@@ -1,11 +1,11 @@
 import { createSignal } from 'solid-js';
 import type { Component } from 'solid-js';
 import './BGstyles.css';
-import dIcon from './dIcon1.svg';
-import news0 from './news0.svg';
-import Admin0 from './admin0.svg';
-import draft from './draft.svg';
-import logout from './logout.svg';
+import dIcon from './svg/dIcon1.svg';
+import news0 from './svg/news0.svg';
+import Admin0 from './svg/admin0.svg';
+import draft from './svg/draft.svg';
+import logout from './svg/logout.svg';
 
 const SideBar: Component<{ activeIndex: number; setActiveIndex: (index: number) => void }> = (props) => {
   const [isCampaignsOpen, setIsCampaignsOpen] = createSignal(false);

@@ -302,3 +302,10 @@ div .sideBar li a {
     display: flex;
     align-items: center;
   }
+
+  .mainContent {
+    width: 100%;
+    overflow-y: auto; /* Enable vertical scrolling */
+    height: 70vh; /* Full viewport height */
+    
+  }
