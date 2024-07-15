@@ -63,9 +63,9 @@ const EventFormSidebar: Component<{
       <input type="text" placeholder="Time" value={time()} onInput={(e) => setTime(e.currentTarget.value)} />
       <input type="text" placeholder="Venue" value={venue()} onInput={(e) => setVenue(e.currentTarget.value)} />
       <textarea placeholder="Description" value={content()} onInput={(e) => setContent(e.currentTarget.value)}></textarea>
-      <button onClick={props.onClose} style="margin-right: 34.7%;">Close</button>
+      <button onClick={props.onClose} style="margin-right: 40.7%; margin-bottom: 5%;">Close</button>
       <button onClick={handleSaveDraft}>Save Draft</button>
-      <button onClick={handlePublish}>Publish Event</button>
+      <button onClick={handlePublish} style="margin-left: 59%;">Publish Event</button>
     </div>
   );
 };

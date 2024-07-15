@@ -1,30 +1,32 @@
 import { Component } from 'solid-js';
+import './BGstyles.css';
 
 interface Admin {
   id: number;
-  name: string;
+  firstName: string;
+  lastName: string;
+  rollNumber: string;
   email: string;
-  role: string;
 }
 
 const AdminView: Component<{ admins: Admin[] }> = (props) => {
   return (
     <div>
-      <h2>Admins</h2>
-      <table>
+      <h2 class="admins-title">Admins</h2>
+      <table class="admins-table">
         <thead>
           <tr>
             <th>Name</th>
+            <th>Roll Number</th>
             <th>Email</th>
-            <th>Role</th>
           </tr>
         </thead>
         <tbody>
           {props.admins.map(admin => (
             <tr key={admin.id}>
-              <td>{admin.name}</td>
+              <td>{admin.firstName} {admin.lastName}</td>
+              <td>{admin.rollNumber}</td>
               <td>{admin.email}</td>
-              <td>{admin.role}</td>
             </tr>
           ))}
         </tbody>

@@ -7,7 +7,10 @@ import NewsletterView from './NewsletterView';
 
 const MainView: Component<{
   onDeleteEvent: (id: number) => void;
-  onDeleteDraft: (id: number) => void; activeIndex: number; events: any[], drafts: any[], onSaveEvent: (event: any) => void, onSaveDraft: (draft: any) => void 
+  onDeleteDraft: (id: number) => void; 
+  activeIndex: number; 
+  events: any[], drafts: any[], admins: any[],
+  onSaveEvent: (event: any) => void, onSaveDraft: (draft: any) => void 
 }> = (props) => {
   const renderContent = () => {
     switch (props.activeIndex) {
@@ -18,7 +21,7 @@ const MainView: Component<{
       case 2:
         return <div>Campaigns Content</div>;
       case 3:
-        return <div><AdminView/></div>;
+        return <div><AdminView admins={props.admins} /></div>;
       case 4:
         return <div><NewsletterView/></div>;
       case 5:

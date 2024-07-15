@@ -2,7 +2,13 @@ import { createSignal } from 'solid-js';
 import type { Component } from 'solid-js';
 import './BGstyles.css';
 
-const AddAdminModal: Component<{ isOpen: boolean; onClose: () => void; onAdd: (admin: { firstName: string; lastName: string; rollNumber: string; email: string; password: string }) => void }> = (props) => {
+interface AddAdminModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  onAdd: (admin: { firstName: string; lastName: string; rollNumber: string; email: string; password: string }) => void;
+}
+
+const AddAdminModal: Component<AddAdminModalProps> = (props) => {
   const [firstName, setFirstName] = createSignal('');
   const [lastName, setLastName] = createSignal('');
   const [rollNumber, setRollNumber] = createSignal('');
@@ -27,19 +33,49 @@ const AddAdminModal: Component<{ isOpen: boolean; onClose: () => void; onAdd: (a
 
   return (
     <div class={`modal ${props.isOpen ? 'active' : ''}`}>
-      <h2 class="head">Add Admin</h2>
-      <div class="row">
-        <input type="text" placeholder="First Name" value={firstName()} onInput={(e) => setFirstName(e.currentTarget.value)} />
-        <input type="text" placeholder="Last Name" value={lastName()} onInput={(e) => setLastName(e.currentTarget.value)} />
+      <h2 class="modal-header">Add Admin</h2>
+      <div class="modal-row">
+        <input
+          type="text"
+          placeholder="First Name"
+          value={firstName()}
+          onInput={(e: Event) => setFirstName((e.target as HTMLInputElement).value)}
+        />
+        <input
+          type="text"
+          placeholder="Last Name"
+          value={lastName()}
+          onInput={(e: Event) => setLastName((e.target as HTMLInputElement).value)}
+        />
       </div>
-      <input type="text" placeholder="Roll Number" value={rollNumber()} onInput={(e) => setRollNumber(e.currentTarget.value)} />
-      <input type="email" placeholder="Email" value={email()} onInput={(e) => setEmail(e.currentTarget.value)} />
-     <div class="row">
-        <input type="password" placeholder="Password" value={password()} onInput={(e) => setPassword(e.currentTarget.value)} />
-        <input type="password" placeholder="Confirm Password" value={confirmPassword()} onInput={(e) => setConfirmPassword(e.currentTarget.value)} />
-     </div>
-        <div class="buttonContainer">
-        <button onClick={handleAddAdmin}>Add Admin</button>
+      <input
+        type="text"
+        placeholder="Roll Number"
+        value={rollNumber()}
+        onInput={(e: Event) => setRollNumber((e.target as HTMLInputElement).value)}
+      />
+      <input
+        type="email"
+        placeholder="Email"
+        value={email()}
+        onInput={(e: Event) => setEmail((e.target as HTMLInputElement).value)}
+      />
+      <div class="modal-row">
+        <input
+          type="password"
+          placeholder="Password"
+          value={password()}
+          onInput={(e: Event) => setPassword((e.target as HTMLInputElement).value)}
+        />
+        <input
+          type="password"
+          placeholder="Confirm Password"
+          value={confirmPassword()}
+          onInput={(e: Event) => setConfirmPassword((e.target as HTMLInputElement).value)}
+        />
+      </div>
+      <div class="modal-button-container">
+        <button onClick={handleAddAdmin} style="margin-left: 52.7%;">Add Admin</button>
         <button onClick={props.onClose}>Close</button>
       </div>
     </div>

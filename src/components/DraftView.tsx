@@ -1,5 +1,5 @@
 import { Component, createSignal } from 'solid-js';
-
+import './BGstyles.css'
 interface Draft {
   id: number;
   name: string;
@@ -26,8 +26,8 @@ const DraftView: Component<{ drafts: Draft[], onSave: (draft: Draft) => void, on
 
   return (
     <div>
-      <h2>Drafts</h2>
-      <ul>
+      <h2 class="drafts-title">Drafts</h2>
+      <ul class="drafts-list">
         {props.drafts.map(draft => (
           <li key={draft.id}>
             {editableDraft()?.id === draft.id ? (
@@ -37,8 +37,8 @@ const DraftView: Component<{ drafts: Draft[], onSave: (draft: Draft) => void, on
                 <input type="time" value={editableDraft()!.time} onInput={(e) => setEditableDraft({ ...editableDraft()!, time: (e.target as HTMLInputElement).value })} />
                 <input type="text" value={editableDraft()!.venue} onInput={(e) => setEditableDraft({ ...editableDraft()!, venue: (e.target as HTMLInputElement).value })} />
                 <textarea value={editableDraft()!.content} onInput={(e) => setEditableDraft({ ...editableDraft()!, content: (e.target as HTMLTextAreaElement).value })} />
-                <button onClick={handleSaveClick}>Save</button>
-                <button onClick={() => props.onDelete(draft.id)}>Delete</button>
+                <button class="save" onClick={handleSaveClick}>Save</button>
+                <button class="delete" onClick={() => props.onDelete(draft.id)}>Delete</button>
               </div>
             ) : (
               <div>
@@ -46,8 +46,8 @@ const DraftView: Component<{ drafts: Draft[], onSave: (draft: Draft) => void, on
                 <p>{draft.date} {draft.time}</p>
                 <p>{draft.venue}</p>
                 <p>{draft.content}</p>
-                <button onClick={() => handleEditClick(draft)}>Edit</button>
-                <button onClick={() => props.onDelete(draft.id)}>Delete</button>
+                <button class="edit" onClick={() => handleEditClick(draft)} style="margin-left: 81%; justify-content: flex-end;">Edit</button>
+                <button class="delete" onClick={() => props.onDelete(draft.id)}>Delete</button>
               </div>
             )}
           </li>

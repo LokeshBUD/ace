@@ -8,13 +8,24 @@ import AddAdminModal from './adminForm';
 import SideBar from './sidebar';
 import TopBarView from './TopBarView';
 import MainView from './MainView';
+import AdminView from './AdminView';
 
+interface Admin {
+  id: number;
+  firstName: string;
+  lastName: string;
+  rollNumber: string;
+  email: string;
+}
 const DashBoard: Component = () => {
   const [activeIndex, setActiveIndex] = createSignal(0);
   const [isEventFormOpen, setIsEventFormOpen] = createSignal(false);
   const [isAddAdminModalOpen, setIsAddAdminModalOpen] = createSignal(false);
   const [events, setEvents] = createSignal<any[]>([]);
   const [drafts, setDrafts] = createSignal<any[]>([]);
+  const [admins, setAdmins] = createSignal<Admin[]>([]);
+  const [isModalOpen, setIsModalOpen] = createSignal(false);
+  3
   const titles = ['Dashboard', 'Drafts', 'Campaigns', 'Admin', 'Newsletter', 'Subscribers'];
 
   onMount(() => {
@@ -78,8 +89,8 @@ const DashBoard: Component = () => {
     setIsAddAdminModalOpen(false);
   };
 
-  const handleAddAdmin = (admin: any) => {
-    console.log('Admin Added:', admin);
+  const handleAddAdmin = (admin: Omit<Admin, 'id'>) => {
+    setAdmins([...admins(), { ...admin, id: admins().length + 1 }]);
   };
 
   return (
@@ -98,6 +109,7 @@ const DashBoard: Component = () => {
           activeIndex={activeIndex()}
           events={events()}
           drafts={drafts()}
+          admins={admins()}
           onSaveEvent={handleSaveEvent}
           onSaveDraft={handleSaveDraft}
           onDeleteEvent={handleDeleteEvent}
